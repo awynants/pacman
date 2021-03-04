@@ -8,6 +8,22 @@ import java.util.Arrays;
  */
 public class Square {
 	
+	/**
+	 * @representationObject
+	 * This variable represents the mazemap that this square is on.
+	 * @invar | mazemapOfSquare != null
+	 */
+	private MazeMap mazemapOfSquare;
+	/**
+	 * @representationObject
+	 * This variable represents the position of this square.
+	 * @invar The position cannot be a negative number.
+	 * | position >= 0
+	 * @invar The position cannot be larger than the height of the mazemap times its weight.
+	 * | position < mazemapOfSquare.getWidth() * mazemapOfSquare.getHeight()
+	 */
+	private int position;
+	
 	public MazeMap getMazeMap() { throw new RuntimeException("Not yet implemented"); }
 	
 	public int getRowIndex() { throw new RuntimeException("Not yet implemented"); }
