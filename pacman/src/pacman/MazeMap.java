@@ -73,7 +73,7 @@ public class MazeMap {
 	 *   | width < 1
 	 * @throws IllegalArgumentException if the given height is less than 1
 	 *   | height < 1
-	 * @throws IllegalArgumentException if the length of the passable array is not equal to width * height
+	 * @throws IllegalArgumentException if the length of the passable array is not equal to the width * height
 	 *   | width*height != passable.length
 	 * @post this object's width equals the given width
 	 *   | getWidth() == width
