@@ -1,6 +1,6 @@
 package pacman;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Each instance of this class represents a maze layout, specifying the width and height of the maze
@@ -55,6 +55,7 @@ public class MazeMap {
 	 * @throws IllegalArgumentException if the given column index is not between 0 and the number of columns
 	 *   | columnIndex < 0 || getWidth() <= columnIndex
 	 */
+	//geen @inspects want de klasse is immutable
 	public boolean isPassable(int rowIndex, int columnIndex) { 
 		if (rowIndex < 0 || getHeight() <= rowIndex) 
 			throw new IllegalArgumentException("Row index not in range");
@@ -78,6 +79,9 @@ public class MazeMap {
 	 *   | getWidth() == width
 	 * @post this object's height equals the given height
 	 *   | getHeight() == height
+	 * @post this object's passable squares equal those in the given array
+	 *   | IntStream.range(0, passable.length).
+	 *   | allMatch(i -> passable[i] == isPassable(Math.floorDiv(i, getWidth()), i % getWidth())) 
 	 */
 	public MazeMap(int width, int height, boolean[] passable) {
 		if (width < 1)
