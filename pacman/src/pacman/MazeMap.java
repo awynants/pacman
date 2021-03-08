@@ -33,6 +33,7 @@ public class MazeMap {
 	 * this array represents, for each square of the MazeMap, whether it is passable
 	 * @invar the length of the passable array is greater than 0
 	 *   | 0 < passarray.length
+	 * @invar | passarray != null
 	 */
 	private final boolean[] passarray;
 

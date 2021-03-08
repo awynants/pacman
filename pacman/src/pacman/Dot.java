@@ -9,6 +9,7 @@ public class Dot {
 	/**
 	 * @representationObject
 	 * this variable represents the square that this dot is on
+	 * @invar | squareOfDot != null
 	 */
 	private Square squareOfDot;
 	
