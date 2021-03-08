@@ -40,12 +40,12 @@ public class MazeMap {
 	/**
 	 * Returns the width (i.e. the number of columns) of this maze map.
 	 */
-	public final int getWidth() { return w; } //geen representation exposure want int is een immutable primitive type
+	public int getWidth() { return w; } //geen representation exposure want int is een immutable primitive type
 	
 	/**
 	 * Returns the height (i.e. the number of rows) of this maze map. 
 	 */
-	public final int getHeight() { return h; } //geen representation exposure want int is een immutable primitive type
+	public int getHeight() { return h; } //geen representation exposure want int is een immutable primitive type
 	
 	/**
 	 * Returns whether the square in this maze at row index {@code row} and column index {@code column} is passable.
@@ -82,7 +82,7 @@ public class MazeMap {
 	 *   | getHeight() == height
 	 * @post this object's passable squares equal those in the given array
 	 *   | IntStream.range(0, passable.length).
-	 *   | allMatch(i -> passable[i] == isPassable(Math.floorDiv(i, getWidth()), i % getWidth())) 
+	 *   | allMatch(i -> passable[i] == isPassable(Math.floorDiv(i, getWidth()), i % getWidth()))
 	 */
 	public MazeMap(int width, int height, boolean[] passable) {
 		if (width < 1)
