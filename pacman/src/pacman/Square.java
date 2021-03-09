@@ -60,6 +60,8 @@ public class Square {
 	
 	/**
 	 * This method checks if this Square is a passable square on the MazeMap.
+	 * @post The result is a boolean.
+	 * 	| result == true || result == false
 	 */
 	//no inspects needed because MazeMap is immutable
 	public boolean isPassable() {
@@ -105,18 +107,43 @@ public class Square {
 		if (direction != Direction.LEFT && direction != Direction.RIGHT && direction != Direction.UP && direction != Direction.DOWN) {
 			throw new IllegalArgumentException("direction is not a valid direction.");
 		}
+		
 		MazeMap currentMazeMap = this.getMazeMap();
 		int currentRow = this.getRowIndex();
 		int currentColumn = this.getColumnIndex();
+		int mazeMapWidth = currentMazeMap.getWidth();
+		int mazeMapHeight = currentMazeMap.getHeight();
+		
 		if (direction == Direction.LEFT) {
 			if (currentColumn == 0) {
-				int newColumn = currentMazeMap.getWidth() - 1;
-				return Square.of(currentMazeMap, currentRow, newColumn);
+				return Square.of(currentMazeMap, currentRow, mazeMapWidth - 1);
 			}
-			else {return Square.of(currentMazeMap, currentRow, currentColumn-1);}
+			else {return Square.of(currentMazeMap, currentRow, currentColumn - 1);}
 		}
-		throw new IllegalArgumentException("not yet finished.");
-		//nog schrijven voor de andere richtingen eens dat er een antwoord op het forum is gekomen.
+		
+		if (direction == Direction.RIGHT) {
+			if (currentColumn == mazeMapWidth - 1) {
+				return Square.of(currentMazeMap, currentRow, 0);
+			}
+			else {return Square.of(currentMazeMap, currentRow, currentColumn + 1);}
+		}
+		
+		if (direction == Direction.UP) {
+			if (currentRow == 0) {
+				return Square.of(currentMazeMap, mazeMapHeight - 1, currentColumn);
+			}
+			else {return Square.of(currentMazeMap, currentRow - 1, currentColumn);}
+		}
+		
+		if (direction == Direction.DOWN) {
+			if (currentColumn == mazeMapHeight - 1) {
+				return Square.of(currentMazeMap, 0, currentColumn);
+			}
+			else {return Square.of(currentMazeMap, currentRow + 1, currentColumn);}
+		}
+		
+		//In case a value somehow got past all those checks, which should normally be impossible.
+		throw new IllegalArgumentException("direction is not a valid direction.");
 	}
 
 	/**
@@ -137,14 +164,77 @@ public class Square {
 	 */
 	// No formal documentation required
 	public Direction[] getPassableDirectionsExcept(Direction excludedDirection) {
-		throw new RuntimeException("Not yet implemented");
+		if (excludedDirection != Direction.LEFT && excludedDirection != Direction.RIGHT && excludedDirection != Direction.UP && excludedDirection != Direction.DOWN) {
+			throw new IllegalArgumentException("direction is not a valid direction.");
+		}
+		
+		boolean[] tempResultArray = {false,false,false,false};
+		int resultLength = 0;
+		
+		if (excludedDirection != Direction.LEFT && canMove(Direction.LEFT)) {
+			tempResultArray[0] = true;
+			resultLength += 1;
+		}
+		if (excludedDirection != Direction.RIGHT && canMove(Direction.RIGHT)) {
+			tempResultArray[1] = true;
+			resultLength += 1;
+		}
+		if (excludedDirection != Direction.UP && canMove(Direction.UP)) {
+			tempResultArray[2] = true;
+			resultLength += 1;
+		}
+		if (excludedDirection != Direction.DOWN && canMove(Direction.DOWN)) {
+			tempResultArray[3] = true;
+			resultLength += 1;
+		}
+		
+		Direction[] result = new Direction[resultLength];
+		int resultIndex = 0;
+		int tempResultIndex = 0;
+		while (resultIndex < resultLength) {
+			if (tempResultArray[tempResultIndex] && tempResultIndex == 0) {
+				result[resultIndex] = Direction.LEFT;
+				resultIndex+=1;
+			}
+			if (tempResultArray[tempResultIndex] && tempResultIndex == 1) {
+				result[resultIndex] = Direction.RIGHT;
+				resultIndex+=1;
+			}
+			if (tempResultArray[tempResultIndex] && tempResultIndex == 2) {
+				result[resultIndex] = Direction.UP;
+				resultIndex+=1;
+			}
+			if (tempResultArray[tempResultIndex] && tempResultIndex == 3) {
+				result[resultIndex] = Direction.DOWN;
+				resultIndex+=1;
+			}
+			tempResultIndex+=1;
+		}
+		
+		return result;
 	}
 	
 	/**
-	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.  
+	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.
+	 * @throws the given Square is not a null-pointer.
+	 * 	| other != null  
+	 * @post the result is a boolean.
+	 * 	| result == true || result == false
 	 */
 	public boolean equals(Square other) {
-		throw new RuntimeException("Not yet implemented");
+		if (other == null) {
+			throw new IllegalArgumentException("Other Square is null.");
+		}
+		
+		boolean result = (this.getMazeMap() == other.getMazeMap());
+		if (result){
+			result = (this.getRowIndex() == other.getRowIndex());
+			if (result) {
+				result = (this.getColumnIndex() == other.getColumnIndex());
+			}
+		}
+		
+		return result;
 	}
 	
 }
