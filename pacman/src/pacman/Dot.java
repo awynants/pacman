@@ -19,7 +19,7 @@ public class Dot {
 	 *   | result != null
 	 */
 	public Square getSquare() { 
-		return squareOfDot; 
+		return squareOfDot;
 		}
 	
 	/**
