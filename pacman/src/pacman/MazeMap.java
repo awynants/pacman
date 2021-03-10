@@ -81,6 +81,8 @@ public class MazeMap {
 	 *   | width < 1
 	 * @throws IllegalArgumentException if the given height is less than 1
 	 *   | height < 1
+	 * @throws IllegalArgumentException if the given array is null
+	 *   | passable == null
 	 * @throws IllegalArgumentException if the length of the passable array is not equal to the width * height
 	 *   | width*height != passable.length
 	 * @post this object's width equals the given width
@@ -96,6 +98,8 @@ public class MazeMap {
 			throw new IllegalArgumentException("Width must be at least 1");
 		if (height < 1)
 			throw new IllegalArgumentException("Height must be at least 1");
+		if (passable == null)
+			throw new IllegalArgumentException("Passable array cannot be null");
 		if (width*height != passable.length)
 			throw new IllegalArgumentException("Passable array length does not match size of the MazeMap");
 		h = height;
