@@ -72,11 +72,11 @@ public class Square {
 	/**
 	 * This is a private constructor used by the of method.
 	 * 
-	 * @throws mazeMap cannot be null 
+	 * @throws mazeMap cannot be null.
 	 * 	| mazeMap == null
-	 * @throws rowIndex cannot be negative or outside the bounds of mazeMap
+	 * @throws rowIndex cannot be negative or outside the bounds of mazeMap.
 	 * 	| (rowIndex < 0) || (rowIndex >= mazeMap.getHeight())
-	 * @throws columnIndex cannot be negative or outside the bounds of mazeMap
+	 * @throws columnIndex cannot be negative or outside the bounds of mazeMap.
 	 * 	| (columnIndex < 0) || (columnIndex >= mazeMap.getWidth())
 	 */
 	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {

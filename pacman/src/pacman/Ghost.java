@@ -10,14 +10,14 @@ public class Ghost {
 	/**
 	 * @representationObject
 	 * This variable represents the square the ghost is on.
-	 * @invar The square of the ghost is not null
+	 * @invar The square of the ghost is not null.
 	 * 	|squareOfGhost != null
 	 */
 	private Square squareOfGhost;
 	/**
 	 * @representationObject
 	 * This variable represents the direction the ghost is going towards.
-	 * @invar The direction of the ghost is not null
+	 * @invar The direction of the ghost is not null.
 	 * 	|directionOfGhost != null
 	 */
 	private Direction directionOfGhost;
