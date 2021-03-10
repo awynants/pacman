@@ -39,11 +39,13 @@ public class MazeMap {
 
 	/**
 	 * Returns the width (i.e. the number of columns) of this maze map.
+	 * @basic
 	 */
 	public int getWidth() { return w; } //geen representation exposure want int is een immutable primitive type
 	
 	/**
 	 * Returns the height (i.e. the number of rows) of this maze map. 
+	 * @basic
 	 */
 	public int getHeight() { return h; } //geen representation exposure want int is een immutable primitive type
 	
