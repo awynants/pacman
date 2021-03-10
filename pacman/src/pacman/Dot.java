@@ -17,6 +17,7 @@ public class Dot {
 	 * Returns the square that this dot is on.
 	 * @post the result is not null
 	 *   | result != null
+	 * @basic
 	 */
 	public Square getSquare() { 
 		return squareOfDot;
