@@ -17,6 +17,7 @@ public class MazeMap {
 	/**
 	 * @representationObject
 	 * This variable represents the width of the MazeMap
+	 * 
 	 * @invar | 0 < w
 	 */
 	private final int w;
@@ -24,6 +25,7 @@ public class MazeMap {
 	/**
 	 * @representationObject
 	 * this variable represents the height of the MazeMap
+	 * 
 	 * @invar | 0 < h
 	 */
 	private final int h;
@@ -31,6 +33,7 @@ public class MazeMap {
 	/**
 	 * @representationObject
 	 * this array represents, for each square of the MazeMap, whether it is passable
+	 * 
 	 * @invar the length of the passable array is greater than 0
 	 *   | 0 < passarray.length
 	 * @invar | passarray != null
@@ -39,12 +42,14 @@ public class MazeMap {
 
 	/**
 	 * Returns the width (i.e. the number of columns) of this maze map.
+	 * 
 	 * @basic
 	 */
 	public int getWidth() { return w; } //geen representation exposure want int is een immutable primitive type
 	
 	/**
 	 * Returns the height (i.e. the number of rows) of this maze map. 
+	 * 
 	 * @basic
 	 */
 	public int getHeight() { return h; } //geen representation exposure want int is een immutable primitive type
