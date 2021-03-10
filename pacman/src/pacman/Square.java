@@ -72,6 +72,29 @@ public class Square {
 	}
 	
 	/**
+	 * This is a private constructor used by the of method.
+	 * 
+	 * @throws mazeMap cannot be null 
+	 * 	| mazeMap != null
+	 * @throws rowIndex cannot be negative or outside the bounds of mazeMap
+	 * 	| (rowIndex >= 0) && (rowIndex < mazeMap.getHeight())
+	 * @throws columnIndex cannot be negative or outside the bounds of mazeMap
+	 * 	| (columnIndex >=0) && (columnIndex < mazeMap.getWidth())
+	 */
+	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
+		if (mazeMap == null) { 
+			throw new IllegalArgumentException("mazeMap is null");}
+		if (rowIndex < 0 || rowIndex >= mazeMap.getHeight()) { 
+			throw new IllegalArgumentException("rowIndex is negative or outside the bounds of mazeMap");}
+		if (columnIndex < 0 || columnIndex >= mazeMap.getWidth()) { 
+			throw new IllegalArgumentException("columnIndex is negative or outside the bounds of mazeMap");}
+		
+		mazemapOfSquare = mazeMap;
+		int newPosition = (rowIndex * mazeMap.getWidth())+columnIndex;
+		position = newPosition;
+	}
+	
+	/**
 	 * This method returns a square object with the given values.
 	 * 
 	 * @post The result cannot be null
@@ -90,10 +113,7 @@ public class Square {
 			throw new IllegalArgumentException("rowIndex is negative or outside the bounds of mazeMap");}
 		if (columnIndex < 0 || columnIndex >= mazeMap.getWidth()) { 
 			throw new IllegalArgumentException("columnIndex is negative or outside the bounds of mazeMap");}
-		Square newSquare = new Square();
-		newSquare.mazemapOfSquare = mazeMap;
-		int newPosition = (rowIndex * mazeMap.getWidth())+columnIndex;
-		newSquare.position = newPosition;
+		Square newSquare = new Square(mazeMap, rowIndex, columnIndex);
 		return newSquare;
 	}
 	
@@ -136,7 +156,7 @@ public class Square {
 		}
 		
 		if (direction == Direction.DOWN) {
-			if (currentColumn == mazeMapHeight - 1) {
+			if (currentRow == mazeMapHeight - 1) {
 				return Square.of(currentMazeMap, 0, currentColumn);
 			}
 			else {return Square.of(currentMazeMap, currentRow + 1, currentColumn);}
