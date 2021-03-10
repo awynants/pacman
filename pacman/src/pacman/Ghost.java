@@ -7,12 +7,35 @@ import java.util.Random;
  */
 public class Ghost {
 	
-	public Square getSquare() { throw new RuntimeException("Not yet implemented"); }
+	/**
+	 * @representationObject
+	 * This variable represents the square the ghost is on.
+	 * @invar The square of the ghost is not null
+	 * 	|squareOfGhost != null
+	 */
+	private Square squareOfGhost;
+	/**
+	 * @representationObject
+	 * This variable represents the direction the ghost is going towards.
+	 * @invar The direction of the ghost is not null
+	 * 	|directionOfGhost != null
+	 */
+	private Direction directionOfGhost;
+	
+	
+	/**
+	 * Returns a clone of the square that the ghost is on.
+	 * @basic
+	 */
+	public Square getSquare() { return squareOfGhost; }
 	
 	/**
 	 * Returns the direction in which this ghost will preferably move next.
+	 * @basic
 	 */
-	public Direction getDirection() { throw new RuntimeException("Not yet implemented"); }
+	public Direction getDirection() { return directionOfGhost; }
+	
+	
 	
 	public Ghost(Square square, Direction direction) { throw new RuntimeException("Not yet implemented"); }
 	

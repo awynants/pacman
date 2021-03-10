@@ -23,7 +23,7 @@ public class Square {
 	 * This variable represents the mazemap that this square is on.
 	 * @invar | mazemapOfSquare != null
 	 */
-	private MazeMap mazemapOfSquare;
+	private final MazeMap mazemapOfSquare;
 	/**
 	 * @representationObject
 	 * This variable represents the position of this square.
@@ -32,13 +32,11 @@ public class Square {
 	 * @invar The position cannot be larger than the height of the mazemap times its weight.
 	 * | position < mazemapOfSquare.getWidth() * mazemapOfSquare.getHeight()
 	 */
-	private int position;
+	private final int position;
 	
 	
 	/**
 	 * Returns the MazeMap that this square is a part of.
-	 * 
-	 * The client shall not mutate the resulting object.
 	 * @basic
 	 */
 	public MazeMap getMazeMap() { return mazemapOfSquare; } //no inspects needed because MazeMap is immutable
@@ -75,11 +73,11 @@ public class Square {
 	 * This is a private constructor used by the of method.
 	 * 
 	 * @throws mazeMap cannot be null 
-	 * 	| mazeMap != null
+	 * 	| mazeMap == null
 	 * @throws rowIndex cannot be negative or outside the bounds of mazeMap
-	 * 	| (rowIndex >= 0) && (rowIndex < mazeMap.getHeight())
+	 * 	| (rowIndex < 0) || (rowIndex >= mazeMap.getHeight())
 	 * @throws columnIndex cannot be negative or outside the bounds of mazeMap
-	 * 	| (columnIndex >=0) && (columnIndex < mazeMap.getWidth())
+	 * 	| (columnIndex < 0) || (columnIndex >= mazeMap.getWidth())
 	 */
 	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		if (mazeMap == null) { 
@@ -100,11 +98,11 @@ public class Square {
 	 * @post The result cannot be null
 	 * 	| result != null
 	 * @throws mazeMap cannot be null 
-	 * 	| mazeMap != null
+	 * 	| mazeMap == null
 	 * @throws rowIndex cannot be negative or outside the bounds of mazeMap
-	 * 	| (rowIndex >= 0) && (rowIndex < mazeMap.getHeight())
+	 * 	| (rowIndex < 0) || (rowIndex >= mazeMap.getHeight())
 	 * @throws columnIndex cannot be negative or outside the bounds of mazeMap
-	 * 	| (columnIndex >=0) && (columnIndex < mazeMap.getWidth())
+	 * 	| (columnIndex < 0) || (columnIndex >= mazeMap.getWidth())
 	 */
 	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		if (mazeMap == null) { 
@@ -237,7 +235,7 @@ public class Square {
 	/**
 	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.
 	 * @throws the given Square is not a null-pointer.
-	 * 	| other != null  
+	 * 	| other == null  
 	 * @post the result is a boolean.
 	 * 	| result == true || result == false
 	 */
