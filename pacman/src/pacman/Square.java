@@ -6,12 +6,12 @@ package pacman;
  * The top row and the leftmost column have index 0.
  * 
  * @immutable
- * @invar The MazeMap of this Square is not null
+ * @invar The MazeMap of this Square is not null.
  * 	| getMazeMap() != null
- * @invar The row index of this Square is not negative and in the bounds of the MazeMap
+ * @invar The row index of this Square is not negative and in the bounds of the MazeMap.
  * 	| (getRowIndex() >= 0) &&
  * 	| (getRowIndex() < getMazeMap().getHeight())
- * @invar The column index of this Square is not negative and in the bounds of the MazeMap
+ * @invar The column index of this Square is not negative and in the bounds of the MazeMap.
  * 	| (getColumnIndex() >= 0) &&
  * 	| (getRowIndex() < getMazeMap().getWidth())
  */

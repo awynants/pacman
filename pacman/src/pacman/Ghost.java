@@ -68,7 +68,7 @@ public class Ghost {
 	
 	
 	/**
-	 * Sets this ghost object's square to the given square
+	 * Sets this ghost object's square to the given square.
 	 * 
 	 * @mutates | this
 	 * @throws The given square cannot be null.

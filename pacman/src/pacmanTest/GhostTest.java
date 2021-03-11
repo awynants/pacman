@@ -29,6 +29,6 @@ public class GhostTest {
 		assert testGhost.getDirection() != Direction.LEFT;
 		assert testGhost.getSquare() == testSquare2;
 		
-		//The last two methods don't have to be tested because they were given, and the assignment stated we only have to test methods we wrote.
+		//The last two methods don't have to be tested because they were given, and the assignment stated we only have to test methods we wrote
 	}
 }
