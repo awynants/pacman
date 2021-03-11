@@ -3,9 +3,9 @@ package pacmanTest;
 import org.junit.jupiter.api.Test;
 
 import pacman.Direction;
+import pacman.Ghost;
 import pacman.MazeMap;
 import pacman.Square;
-import pacman.Ghost;
 
 public class GhostTest {
 	

@@ -2,9 +2,9 @@ package pacmanTest;
 
 import org.junit.jupiter.api.Test;
 
+import pacman.Dot;
 import pacman.MazeMap;
 import pacman.Square;
-import pacman.Dot;
 
 class DotTest {
 

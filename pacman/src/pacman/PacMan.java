@@ -72,11 +72,6 @@ public class PacMan {
 	 * Sets this Pac-Man character's square to the given square
 	 * 
 	 * @mutates | this
-	 * @throws IllegalArgumentException if the given square is not a neighbor of the current square
-	 *  | !getSquare().getNeighbor(Direction.RIGHT).equals(square) &&
-	 *  | !getSquare().getNeighbor(Direction.UP).equals(square) &&
-	 *  | !getSquare().getNeighbor(Direction.DOWN).equals(square) && 
-	 *  | !getSquare().getNeighbor(Direction.LEFT).equals(square)
 	 * @throws IllegalArgumentException if argument {@code square} is null
 	 *  | square == null
 	 * @throws IllegalArgumentException if the given square is not passable
@@ -93,11 +88,6 @@ public class PacMan {
 		if (square.isPassable() != true) {
 			throw new IllegalArgumentException("This square is not passable");
 		}
-		if (!getSquare().getNeighbor(Direction.RIGHT).equals(square) &&
-			!getSquare().getNeighbor(Direction.UP).equals(square) &&
-			!getSquare().getNeighbor(Direction.DOWN).equals(square) && 
-			!getSquare().getNeighbor(Direction.LEFT).equals(square))
-			throw new IllegalArgumentException("This square is not a neighbor of the current square");
 		else
 			CurrentSquare = square;
 	}
