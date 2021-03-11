@@ -12,6 +12,8 @@ public class Ghost {
 	 * This variable represents the square the ghost is on.
 	 * @invar The square of the ghost is not null.
 	 * 	|squareOfGhost != null
+	 * @invar The square of the ghost has to be passable.
+	 * 	|squareOfGhost.isPassable()
 	 */
 	private Square squareOfGhost;
 	/**
@@ -36,12 +38,75 @@ public class Ghost {
 	public Direction getDirection() { return directionOfGhost; }
 	
 	
+	/**
+	 * Initializes a Ghost character on the given square and facing the given direction.
+	 * @throws The given square cannot be null.
+	 * 	| square == null
+	 * @throws The given square has to be passable.
+	 * 	| !(square.isPassable())
+	 * @throws The given direction cannot be null.
+	 * 	| direction == null
+	 * @post The ghost's direction is equal to the given direction.
+	 * 	| getDirection() == direction
+	 * @post The ghost's square is equal to the given square.
+	 * 	| getSquare() == square
+	 */
+	public Ghost(Square square, Direction direction) {
+		if (square == null) {
+			throw new IllegalArgumentException("The given square is null.");
+		}
+		if (!(square.isPassable())){
+			throw new IllegalArgumentException("The given square is not passable.");
+		}
+		if (direction == null) {
+			throw new IllegalArgumentException("The given direction is null.");
+		}
+		
+		squareOfGhost = square; //squares are immutable
+		directionOfGhost = direction;
+	}
 	
-	public Ghost(Square square, Direction direction) { throw new RuntimeException("Not yet implemented"); }
 	
-	public void setSquare(Square square) { throw new RuntimeException("Not yet implemented"); }
+	/**
+	 * Sets this ghost object's square to the given square
+	 * 
+	 * @mutates | this
+	 * @throws The given square cannot be null.
+	 * 	| square == null
+	 * @throws The given square has to be passable.
+	 * 	| !(square.isPassable())
+	 * @post This ghost's square is now the given square.
+	 * 	| getSquare() == square
+	 * @post This ghost's direction remains unchanged.
+	 * 	| getDirection() == old(getDirection())
+	 */
+	public void setSquare(Square square) {
+		if (square == null) {
+			throw new IllegalArgumentException("The given square is null.");
+		}
+		if (!(square.isPassable())){
+			throw new IllegalArgumentException("The given square is not passable.");
+		}
+		squareOfGhost = square;
+	}
 	
-	public void setDirection(Direction direction) { throw new RuntimeException("Not yet implemented"); }
+	/**
+	 * Sets this ghost object's direction to the given direction
+	 * 
+	 * @mutates | this
+	 * @throws The given direction cannot be null.
+	 * 	| direction == null
+	 * @post The ghost's direction is equal to the given direction.
+	 * 	| getDirection() == direction
+	 * @post The ghost's square remains unchanged.
+	 * 	| getSquare() == old(getSquare())
+	 */
+	public void setDirection(Direction direction) {
+		if (direction == null) {
+			throw new IllegalArgumentException("The given direction is null.");
+		}
+		directionOfGhost = direction;
+	}
 	
 	private static int MOVE_FORWARD_PREFERENCE = 10;
 	

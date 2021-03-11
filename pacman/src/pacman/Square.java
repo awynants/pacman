@@ -1,6 +1,5 @@
 package pacman;
 
-import java.util.Arrays;
 
 /**
  * Each instance of this class represents a position in a maze, specified by a row index and a column index.
@@ -70,7 +69,7 @@ public class Square {
 	}
 	
 	/**
-	 * This is a private constructor used by the of method.
+	 * This is a private constructor used by the of method. It creates a new Square object with the given mazemap, row index and column index.
 	 * 
 	 * @throws mazeMap cannot be null.
 	 * 	| mazeMap == null
@@ -78,6 +77,12 @@ public class Square {
 	 * 	| (rowIndex < 0) || (rowIndex >= mazeMap.getHeight())
 	 * @throws columnIndex cannot be negative or outside the bounds of mazeMap.
 	 * 	| (columnIndex < 0) || (columnIndex >= mazeMap.getWidth())
+	 * @post This object's MazeMap is equal to the given mazeMap.
+	 * 	| getMazeMap() == mazeMap
+	 * @post This object's row index is equal to the given row index.
+	 * 	| getRowIndex() == rowIndex
+	 * @post This object's column index is equal to the given column index.
+	 * 	| getColumnIndex() == columnIndex
 	 */
 	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		if (mazeMap == null) { 
@@ -234,7 +239,7 @@ public class Square {
 	
 	/**
 	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.
-	 * @throws the given Square is not a null-pointer.
+	 * @throws the given Square cannot be a null-pointer.
 	 * 	| other == null  
 	 * @post the result is a boolean.
 	 * 	| result == true || result == false
