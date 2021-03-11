@@ -22,6 +22,8 @@ public class PacMan {
 	 * 
 	 * @invar the square Pac-Man is on is not null
 	 *  | CurrentSquare != null
+	 * @invar the square Pac-Man is on is passable
+	 *  | CurrentSquare.isPassable() == true
 	 */
 	private Square CurrentSquare;
 	

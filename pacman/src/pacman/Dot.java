@@ -13,7 +13,10 @@ public class Dot {
 	 * @representationObject
 	 * this variable represents the square that this dot is on
 	 * 
-	 * @invar | squareOfDot != null
+	 * @invar the square a dot is on is not null
+	 *  | squareOfDot != null
+	 * @invar the square a dot is on is passable
+	 *  | squareOfDot.isPassable() == true
 	 */
 	private Square squareOfDot;
 	
@@ -33,12 +36,16 @@ public class Dot {
 	 * 
 	 * @throws IllegalArgumentException if the given square is null
 	 *   | square == null
+	 * @throws IllegalArgumentException if the given square is not passable
+	 *   | square.isPassable() != true
 	 * @post this dot's square equals the given square
 	 *   | getSquare() == square
 	 */
 	public Dot(Square square) {
 		if (square == null)
 			throw new IllegalArgumentException("The given square cannot be null");
+		if (square.isPassable() != true)
+			throw new IllegalArgumentException("The square a dot is on must be passable");
 		squareOfDot = square; 
 		}
 
