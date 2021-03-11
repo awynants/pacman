@@ -5,7 +5,9 @@ package pacman;
  * 
  * @immutable
  * @invar the square of this dot is not null
- *   | getSquare() != null
+ *  | getSquare() != null
+ * @invar the square that this dot is on must be passable
+ * 	| getSquare().isPassable()
  */
 public class Dot {
 	

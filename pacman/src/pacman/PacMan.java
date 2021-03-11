@@ -5,6 +5,10 @@ package pacman;
  * 
  * @invar the number of lives is at least 0
  *   | 0 <= getNbLives()
+ * @invar the square that Pac-man is on cannot be null
+ * 	 | getSquare() != null
+ * @invar the square Pac-man is on must be passable
+ * 	 | getSquare().isPassable()
  */
 public class PacMan {
 	

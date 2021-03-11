@@ -11,6 +11,9 @@ import java.util.stream.IntStream;
  *   | 0 < getWidth()
  * @invar the width of the mazemap is greater than 0
  *   | 0 < getHeight()
+ * @invar each value in the array of passable squares must be a boolean
+ * 	 | IntStream.range(0, getWidth() * getHeight()).
+ *   | allMatch(i -> (true == isPassable(Math.floorDiv(i, getWidth()), i % getWidth()) || false == isPassable(Math.floorDiv(i, getWidth()), i % getWidth())))
  */
 public class MazeMap {
 	
@@ -36,6 +39,8 @@ public class MazeMap {
 	 * 
 	 * @invar the length of the passable array is greater than 0
 	 *   | 0 < passarray.length
+	 * @invar the length of the passable array is equal to the amount of positions on the board.
+	 * 	 | passarray.length == w * h
 	 * @invar | passarray != null
 	 */
 	private final boolean[] passarray;

@@ -4,6 +4,13 @@ import java.util.Random;
 
 /**
  * Each instance of this class represents a ghost in a Pac-Man maze.
+ * 
+ * @invar The square of this ghost is not null
+ * 	| getSquare() != null
+ * @invar The square of this ghost is passable
+ * 	| getSquare().isPassable()
+ * @invar The direction of this ghost is not null
+ * 	| getDirection() != null
  */
 public class Ghost {
 	
