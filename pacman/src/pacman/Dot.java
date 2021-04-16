@@ -37,11 +37,11 @@ public class Dot extends FoodItem {
 	/**
 	 * Initializes a dot at the given square.
 	 * 
-	 * @throws IllegalArgumentException if the given square is null
+	 * @throws IllegalArgumentException if the given square is null.
 	 *   | square == null
-	 * @throws IllegalArgumentException if the given square is not passable
+	 * @throws IllegalArgumentException if the given square is not passable.
 	 *   | square.isPassable() != true
-	 * @post this dot's square equals the given square
+	 * @post this dot's square equals the given square.
 	 *   | getSquare() == square
 	 */
 	public Dot(Square square) {
