@@ -31,7 +31,7 @@ public class PowerPellet extends FoodItem{
 			throw new IllegalArgumentException("The given square cannot be null");
 		if (square.isPassable() != true)
 			throw new IllegalArgumentException("The square a power pellet is on must be passable");
-		squareOfPellet = square; 
+		squareOfPellet = square;
 		}
 	
 	@Override

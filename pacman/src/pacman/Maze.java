@@ -9,7 +9,7 @@ public class Maze {
 	private MazeMap map;
 	private PacMan pacMan;
 	private Ghost[] ghosts;
-	private FoodItem[] dots;
+	private FoodItem[] foods;
 	
 	public MazeMap getMap() { return map; }
 	
@@ -17,18 +17,18 @@ public class Maze {
 	
 	public Ghost[] getGhosts() { return ghosts.clone(); }
 	
-	public FoodItem[] getDots() { return dots.clone(); }
+	public FoodItem[] getFoodItems() { return foods.clone(); }
 	
-	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] dots) {
+	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] foods) {
 		this.random = random;
 		this.map = map;
 		this.pacMan = pacMan;
 		this.ghosts = ghosts.clone();
-		this.dots = dots.clone();
+		this.foods = foods.clone();
 	}
 	
 	public boolean isCompleted() {
-		return dots.length == 0;
+		return foods.length == 0;
 	}
 	
 	private void checkPacManDamage() {
@@ -44,15 +44,15 @@ public class Maze {
 	}
 	
 	private void removeDotAtIndex(int index) {
-		FoodItem[] newDots = new Dot[dots.length - 1];
-		System.arraycopy(dots, 0, newDots, 0, index);
-		System.arraycopy(dots, index + 1, newDots, index, newDots.length - index);
-		dots = newDots;
+		FoodItem[] newDots = new Dot[foods.length - 1];
+		System.arraycopy(foods, 0, newDots, 0, index);
+		System.arraycopy(foods, index + 1, newDots, index, newDots.length - index);
+		foods = newDots;
 	}
 	
 	private void removeDotAtSquare(Square square) {
-		for (int i = 0; i < dots.length; i++) {
-			if (dots[i].getSquare().equals(square)) {
+		for (int i = 0; i < foods.length; i++) {
+			if (foods[i].getSquare().equals(square)) {
 				removeDotAtIndex(i);
 				return;
 			}

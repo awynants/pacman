@@ -18,7 +18,7 @@ public class MazeDescriptions {
 			passable[i] = true;
 		
 		int nbDots = 0;
-		FoodItem[] dots = new Dot[width * height];
+		FoodItem[] dots = new FoodItem[width * height];
 		
 		int nbGhosts = 0;
 		Ghost[] ghosts = new Ghost[width * height];
