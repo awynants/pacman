@@ -9,7 +9,7 @@ public class Maze {
 	private MazeMap map;
 	private PacMan pacMan;
 	private Ghost[] ghosts;
-	private Dot[] dots;
+	private FoodItem[] dots;
 	
 	public MazeMap getMap() { return map; }
 	
@@ -17,9 +17,9 @@ public class Maze {
 	
 	public Ghost[] getGhosts() { return ghosts.clone(); }
 	
-	public Dot[] getDots() { return dots.clone(); }
+	public FoodItem[] getDots() { return dots.clone(); }
 	
-	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, Dot[] dots) {
+	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] dots) {
 		this.random = random;
 		this.map = map;
 		this.pacMan = pacMan;
@@ -44,7 +44,7 @@ public class Maze {
 	}
 	
 	private void removeDotAtIndex(int index) {
-		Dot[] newDots = new Dot[dots.length - 1];
+		FoodItem[] newDots = new Dot[dots.length - 1];
 		System.arraycopy(dots, 0, newDots, 0, index);
 		System.arraycopy(dots, index + 1, newDots, index, newDots.length - index);
 		dots = newDots;

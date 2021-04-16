@@ -9,11 +9,11 @@ package pacman;
  * @invar the square that this dot is on must be passable
  * 	| getSquare().isPassable()
  */
-public class Dot {
+public class Dot extends FoodItem {
 	
 	/**
 	 * @representationObject
-	 * this variable represents the square that this dot is on
+	 * This variable represents the square that this dot is on
 	 * 
 	 * @invar the square a dot is on is not null
 	 *  | squareOfDot != null
@@ -22,6 +22,7 @@ public class Dot {
 	 */
 	private Square squareOfDot;
 	
+	@Override
 	/**
 	 * Returns the square that this dot is on.
 	 * 
@@ -50,5 +51,15 @@ public class Dot {
 			throw new IllegalArgumentException("The square a dot is on must be passable");
 		squareOfDot = square; 
 		}
+
+	@Override
+	/**
+	 * Returns the size of the dot relative to a dot. All dots are equal size, so it returns 1.
+	 * 
+	 * @post | result == 1
+	 */
+	public int getSize() {
+		return 1;
+	}
 
 }
