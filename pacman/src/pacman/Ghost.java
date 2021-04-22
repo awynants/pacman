@@ -48,8 +48,10 @@ public class Ghost {
 	 */
 	public Direction getDirection() { return directionOfGhost; }
 	
+	public Square getOriginalSquare() {return originalSquare;}
+	
 	public boolean isVulnerable() {
-		if (state instanceof VulnerableGhostState)
+		if (state.isVulnerableState())
 			return true;
 		else
 			return false;
@@ -142,9 +144,13 @@ public class Ghost {
 	}
 	
 	// No formal document required
-	public void move(Random random) {
+	public void reallyMove(Random random) {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
+	}
+	
+	public void move(Random random) {
+		state = state.move(this, random);
 	}
 	
 	public void pacManAtePowerPellet() {
@@ -153,7 +159,7 @@ public class Ghost {
 	}
 	
 	public void hitBy(PacMan pacMan) {
-		state = hitBy(this, pacMan);
+		state = state.hitBy(this, pacMan);
 		
 	}
 	
