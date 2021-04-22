@@ -54,6 +54,10 @@ public class Maze {
 		for (int i = 0; i < foods.length; i++) {
 			if (foods[i].getSquare().equals(square)) {
 				removeDotAtIndex(i);
+				if (foods[i] instanceof PowerPellet) {
+					for (int j = 0; j < ghosts.length; j++)
+						ghosts[j].pacManAtePowerPellet();
+				}
 				return;
 			}
 		}

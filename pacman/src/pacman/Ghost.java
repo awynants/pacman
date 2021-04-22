@@ -31,6 +31,10 @@ public class Ghost {
 	 */
 	private Direction directionOfGhost;
 	
+	private GhostState state;
+	
+	private Square originalSquare;
+	
 	
 	/**
 	 * Returns a clone of the square that the ghost is on.
@@ -44,6 +48,12 @@ public class Ghost {
 	 */
 	public Direction getDirection() { return directionOfGhost; }
 	
+	public boolean isVulnerable() {
+		if (state instanceof VulnerableGhostState)
+			return true;
+		else
+			return false;
+	}
 	
 	/**
 	 * Initializes a Ghost character on the given square and facing the given direction.
@@ -70,7 +80,9 @@ public class Ghost {
 		}
 		
 		squareOfGhost = square; //squares are immutable
+		originalSquare = square;
 		directionOfGhost = direction;
+		state = new RegularGhostState();
 	}
 	
 	
@@ -134,4 +146,15 @@ public class Ghost {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
 	}
+	
+	public void pacManAtePowerPellet() {
+		state = new VulnerableGhostState();
+		setDirection(getDirection().getOpposite());
+	}
+	
+	public void hitBy(PacMan pacMan) {
+		state = hitBy(this, pacMan);
+		
+	}
+	
 }
