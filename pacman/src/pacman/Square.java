@@ -13,7 +13,7 @@ package pacman;
  * 	| (getRowIndex() < getMazeMap().getHeight())
  * @invar The column index of this Square is not negative and in the bounds of the MazeMap.
  * 	| (getColumnIndex() >= 0) &&
- * 	| (getRowIndex() < getMazeMap().getWidth())
+ * 	| (getColumnIndex() < getMazeMap().getWidth())
  */
 public class Square {
 	
