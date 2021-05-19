@@ -1,5 +1,6 @@
 package pacman.wormholes;
 
+import java.util.HashSet;
 import java.util.Set;
 import pacman.Square;
 
@@ -24,5 +25,47 @@ public class ArrivalPortal {
 	 * @invar The set cannot contain a null value
 	 * 		|connectedWormholes.stream().allMatch(s -> s != null)
 	 */
-	private Set<Wormhole> connectedWormholes;
+	private Set<Wormhole> connectedWormholes = new HashSet<Wormhole>();
+	
+	
+	/**
+	 * Returns the square that the arrival portal is on
+	 * 
+	 * @post the result is not null
+	 * 		|result != null
+	 * @basic
+	 */
+	public Square getSquare() {
+		return squareOfPortal;
+	}
+	
+	/**
+	 * Returns the wormholes connected to this arrival portal
+	 * 
+	 * @creates | this
+	 * 
+	 * @invar | getWormholesInternal().stream().allMatch(w -> w.getArrivalPortalInternal() == this)
+	 * 
+	 * @post |result != null
+	 * @post |result.stream().allMatch(s -> s != null)
+	 * 
+	 * @peerObjects (package-level)
+	 */
+	Set<Wormhole> getWormholesInternal() {
+		return Set.copyOf(connectedWormholes);
+	}
+	
+	/**
+	 * Returns the wormhole connected to this arrival portal
+	 * 
+	 * @creates | this
+	 * 
+	 * @post |result != null
+	 * @post |result.stream().allMatch(w -> w != null)
+	 * 
+	 * @peerObjects (package-level)
+	 */
+	public Set<Wormhole> getWormholes() {
+		return Set.copyOf(connectedWormholes);
+	}
 }

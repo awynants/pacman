@@ -1,5 +1,6 @@
 package pacman.wormholes;
 
+import java.util.HashSet;
 import java.util.Set;
 import pacman.Square;
 
@@ -35,7 +36,7 @@ public class DeparturePortal {
 	 * @invar The set cannot contain a null value
 	 * 		|connectedWormholes.stream().allMatch(w -> w != null)
 	 */
-	private Set<Wormhole> connectedWormholes;
+	private Set<Wormhole> connectedWormholes = new HashSet<Wormhole>();
 	
 	/**
 	 * Returns the square that the departure portal is on
@@ -79,13 +80,12 @@ public class DeparturePortal {
 	}
 	
 	/**
-	 * Creates an object that represents a departure portal on the given square
-	 * that is not yet connected to a wormhole
+	 * Creates an object that represents a departure portal on the given square that is not yet connected to a wormhole
 	 * 
 	 * @mutates | this
 	 * 
-	 * @invar The given square cannot be null
-	 * 		| square != null
+	 * @throws IllegalArgumentException if the given square is null
+	 * 		| square == null
 	 * 
 	 * @post | square == getSquare()
 	 * @post | getWormholes().isEmpty()
