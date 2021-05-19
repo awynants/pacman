@@ -89,7 +89,8 @@ public class Wormhole {
 		
 		departurePortal = givenDeparturePortal;
 		arrivalPortal = givenArrivalPortal;
-		givenDeparturePortal.getWormholesInternal().add(this);
-		givenArrivalPortal.getWormholesInternal().add(this);
+		//givenDeparturePortal.getWormholesInternal().add(this);
+		//givenArrivalPortal.getWormholesInternal().add(this);
+		// DIT GROEN HIERBOVEN IS FOUT! Moet het vervangen met andere code morgen eens dat ik de mutatoren heb geschreven voor al deze klassen!
 	}
 }
