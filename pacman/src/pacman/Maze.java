@@ -83,10 +83,12 @@ public class Maze {
 			for (DeparturePortal departurePortal : departureportals) {
 				if (newSquare.equals(departurePortal.getSquare())) {
 					int nrofarrivals = departurePortal.getWormholes().size();
-					int number = random.nextInt(nrofarrivals);
-					Wormhole[] connectedWormholes = departurePortal.getWormholes().toArray(new Wormhole[nrofarrivals]);
+					if (nrofarrivals > 0) {
+						int number = random.nextInt(nrofarrivals);
+						Wormhole[] connectedWormholes = departurePortal.getWormholes().toArray(new Wormhole[nrofarrivals]);
 					
-					pacMan.setSquare(connectedWormholes[number].getArrivalPortal().getSquare());
+						pacMan.setSquare(connectedWormholes[number].getArrivalPortal().getSquare());
+					}
 				}
 			}
 			removeDotAtSquare(newSquare);
