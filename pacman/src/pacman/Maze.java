@@ -2,6 +2,11 @@ package pacman;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
+
+import pacman.wormholes.ArrivalPortal;
+import pacman.wormholes.DeparturePortal;
+import pacman.wormholes.Wormhole;
 
 public class Maze {
 	
@@ -10,7 +15,10 @@ public class Maze {
 	private PacMan pacMan;
 	private Ghost[] ghosts;
 	private FoodItem[] foods;
-	
+	private DeparturePortal[] departureportals;
+	private ArrivalPortal[] arrivalportals;
+	private Wormhole[] wormholes;
+ 	
 	public MazeMap getMap() { return map; }
 	
 	public PacMan getPacMan() { return pacMan; }
@@ -19,12 +27,15 @@ public class Maze {
 	
 	public FoodItem[] getFoodItems() { return foods.clone(); }
 	
-	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] foods) {
+	public Maze(Random random, MazeMap map, PacMan pacMan, Ghost[] ghosts, FoodItem[] foods, DeparturePortal[] departureportals, ArrivalPortal[] arrivalportals) {
 		this.random = random;
 		this.map = map;
 		this.pacMan = pacMan;
 		this.ghosts = ghosts.clone();
 		this.foods = foods.clone();
+		this.departureportals = departureportals.clone();
+		this.arrivalportals = arrivalportals.clone();
+		this.wormholes = new Wormhole[0];
 	}
 	
 	public boolean isCompleted() {
@@ -67,9 +78,42 @@ public class Maze {
 		Square newSquare = pacMan.getSquare().getNeighbor(direction);
 		if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
+			checkPacManDamage();
+			for (int i = 0; i < departureportals.length; i++) {
+				if (newSquare == departureportals[i].getSquare()) {
+					int nrofarrivals = departureportals[i].getWormholes().size();
+					int number = random.nextInt(nrofarrivals);
+					Wormhole[] connectedwormholes = new Wormhole[nrofarrivals];
+					departureportals[i].getWormholes().toArray(connectedwormholes);
+					pacMan.setSquare(connectedwormholes[number].getArrivalPortal().getSquare());
+				}
+			}
 			removeDotAtSquare(newSquare);
 			checkPacManDamage();
 		}
 	}
 	
+	public DeparturePortal[] getDeparturePortals() {
+		return departureportals.clone();
+	}
+	
+	public ArrivalPortal[] getArrivalPortals() {
+		return arrivalportals.clone();
+	}
+	
+	public Wormhole[] getWormholes() {
+		return wormholes.clone();
+	}
+	
+	public void addWormhole(Wormhole newwormhole) {
+		if (!IntStream.range(0, departureportals.length).anyMatch(i -> departureportals[i] == newwormhole.getDeparturePortal())) {
+			throw new RuntimeException("Wormhole's departure portal not in Maze's list of departure portals");
+		}
+		if (!IntStream.range(0, arrivalportals.length).anyMatch(i -> arrivalportals[i] == newwormhole.getArrivalPortal())) {
+			throw new RuntimeException("Wormhole's arrival portal not in Maze's list of arrival portals");
+		}
+		Wormhole[] newwormholes = Arrays.copyOf(wormholes, wormholes.length + 1);
+		newwormholes[wormholes.length] = newwormhole;
+		this.wormholes = newwormholes;
+	}
 }
