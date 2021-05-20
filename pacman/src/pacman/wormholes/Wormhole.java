@@ -89,8 +89,64 @@ public class Wormhole {
 		
 		departurePortal = givenDeparturePortal;
 		arrivalPortal = givenArrivalPortal;
-		//givenDeparturePortal.getWormholesInternal().add(this);
-		//givenArrivalPortal.getWormholesInternal().add(this);
-		// DIT GROEN HIERBOVEN IS FOUT! Moet het vervangen met andere code morgen eens dat ik de mutatoren heb geschreven voor al deze klassen!
+		givenDeparturePortal.addWormhole(this);
+		givenArrivalPortal.addWormhole(this);
+	}
+	
+	
+	/**
+	 * Changes the current departure portal of this wormhole to the given departure portal
+	 * 
+	 * @throws IllegalArgumentException if the given departure portal is null
+	 * 		| givenDeparturePortal == null
+	 * 
+	 * @mutates_properties | getDeparturePortal(), givenDeparturePortal.getWormholes(), getDeparturePortal().getWormholes()
+	 * 
+	 * @post This wormhole's departure portal is now the given departure portal
+	 * 		| getDeparturePortal() == givenDeparturePortal
+	 * @post The old departure portal's set of wormholes will equal its old set of wormholes minus this wormhole, unless the old and given departure portal are the same
+	 * 		| old(getDeparturePortal()) == givenDeparturePortal || old(getDeparturePortal()).getWormholes().equals(LogicalSet.minus(old(getDeparturePortal().getWormholes()), this))
+	 * @post the given departure portal's set of wormholes will equal its old set of wormholes plus this wormhole, unless the old and given departure portal are the same
+	 * 		| old(getDeparturePortal()) == givenDeparturePortal || givenDeparturePortal.getWormholes().equals(LogicalSet.plus(old(givenDeparturePortal.getWormholes()), this))
+	 */
+	public void setDeparturePortal(DeparturePortal givenDeparturePortal) {
+		if (givenDeparturePortal == null) {
+			throw new IllegalArgumentException("The given departure portal cannot be null");
+		}
+		
+		if (givenDeparturePortal != this.getDeparturePortal()) {
+			DeparturePortal oldDeparturePortal = this.getDeparturePortal();
+			oldDeparturePortal.removeWormhole(this);
+			departurePortal = givenDeparturePortal;
+			givenDeparturePortal.addWormhole(this);
+		}
+	}
+	
+	/**
+	 * Changes the current departure portal of this wormhole to the given arrival portal
+	 * 
+	 * @throws IllegalArgumentException if the given departure portal is null
+	 * 		| givenArrivalPortal == null
+	 * 
+	 * @mutates_properties | getDeparturePortal(), givenArrivalPortal.getWormholes(), getArrivalPortal().getWormholes()
+	 * 
+	 * @post This wormhole's arrival portal is now the given arrival portal
+	 * 		| getArrivalPortal() == givenArrivalPortal
+	 * @post The old arrival portal's set of wormholes will equal its old set of wormholes minus this wormhole, unless the old and given arrival portal are the same
+	 * 		| old(getArrivalPortal()) == givenArrivalPortal || old(getArrivalPortal()).getWormholes().equals(LogicalSet.minus(old(getArrivalPortal().getWormholes()), this))
+	 * @post the given arrival portal's set of wormholes will equal its old set of wormholes plus this wormhole, unless the old and given arrival portal are the same
+	 * 		| old(getArrivalPortal()) == givenArrivalPortal || givenArrivalPortal.getWormholes().equals(LogicalSet.plus(old(givenArrivalPortal.getWormholes()), this))
+	 */
+	public void setArrivalPortal(ArrivalPortal givenArrivalPortal) {
+		if (givenArrivalPortal == null) {
+			throw new IllegalArgumentException("The given arrival portal cannot be null");
+		}
+		
+		if (givenArrivalPortal != this.getArrivalPortal()) {
+			ArrivalPortal oldArrivalPortal = this.getArrivalPortal();
+			oldArrivalPortal.removeWormhole(this);
+			arrivalPortal = givenArrivalPortal;
+			givenArrivalPortal.addWormhole(this);
+		}
 	}
 }

@@ -3,6 +3,7 @@ package pacman.wormholes;
 import java.util.HashSet;
 import java.util.Set;
 import pacman.Square;
+import logicalcollections.LogicalSet;
 
 /**
  * Represents a departure portal in a wormhole graph.
@@ -98,4 +99,39 @@ public class DeparturePortal {
 	}
 	
 	
+	/**
+	 * Adds the given wormhole to the set of wormholes
+	 * 
+	 * @throws IllegalArgumentException if the given wormhole is null
+	 * 		| wormhole == null
+	 * 
+	 * @mutates | this
+	 * 
+	 * @post the new set of wormholes equals the old set of wormholes plus the given wormhole
+	 * 		| getWormholesInternal().equals(LogicalSet.plus(old(getWormholesInternal()), wormhole))
+	 */
+	void addWormhole(Wormhole wormhole) {
+		if (wormhole == null) {
+			throw new IllegalArgumentException("The given wormhole cannot be null");
+		}
+		connectedWormholes.add(wormhole);
+	}
+	
+	/**
+	 * Removes the given wormhole from the set of wormholes
+	 * 
+	 * @throws IllegalArgumentException if the given wormhole is null
+	 * 		| wormhole == null
+	 * 
+	 * @mutates | this
+	 * 
+	 * @post the new set of wormholes equals the old set of wormholes minus the given wormhole
+	 * 		| getWormholesInternal().equals(LogicalSet.minus(old(getWormholesInternal()), wormhole))
+	 */
+	void removeWormhole(Wormhole wormhole) {
+		if (wormhole == null) {
+			throw new IllegalArgumentException("The given wormhole cannot be null");
+		}
+		connectedWormholes.remove(wormhole);
+	}
 }
