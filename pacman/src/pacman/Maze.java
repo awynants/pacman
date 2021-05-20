@@ -2,6 +2,7 @@ package pacman;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 import pacman.wormholes.ArrivalPortal;
@@ -79,13 +80,13 @@ public class Maze {
 		if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
 			checkPacManDamage();
-			for (int i = 0; i < departureportals.length; i++) {
-				if (newSquare == departureportals[i].getSquare()) {
-					int nrofarrivals = departureportals[i].getWormholes().size();
+			for (DeparturePortal departurePortal : departureportals) {
+				if (newSquare.equals(departurePortal.getSquare())) {
+					int nrofarrivals = departurePortal.getWormholes().size();
 					int number = random.nextInt(nrofarrivals);
-					Wormhole[] connectedwormholes = new Wormhole[nrofarrivals];
-					departureportals[i].getWormholes().toArray(connectedwormholes);
-					pacMan.setSquare(connectedwormholes[number].getArrivalPortal().getSquare());
+					Wormhole[] connectedWormholes = departurePortal.getWormholes().toArray(new Wormhole[nrofarrivals]);
+					
+					pacMan.setSquare(connectedWormholes[number].getArrivalPortal().getSquare());
 				}
 			}
 			removeDotAtSquare(newSquare);
