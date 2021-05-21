@@ -5,6 +5,17 @@ import java.util.Set;
 import pacman.Square;
 import logicalcollections.LogicalSet;
 
+/**
+ * Represents an arrival portal in a wormhole graph.
+ * 
+ * @invar The portal has to be on an existing square
+ * 		| getSquare() != null
+ * @invar | getWormholes() != null
+ * @invar The value null will never be stored as a wormhole of this portal
+ * 		| getWormholes().stream().allMatch(w -> w != null)
+ * @invar The portal-wormhole association is consistent
+ * 		| getWormholes().stream().allMatch(w -> w.getArrivalPortal() == this)
+ */
 public class ArrivalPortal {
 	
 	/**

@@ -2,6 +2,18 @@ package pacman.wormholes;
 
 import logicalcollections.LogicalSet;
 
+/**
+ * Represents a wormhole in a wormhole graph, which connects a departure portal and an arrival portal
+ * 
+ * @invar The departure portal cannot be null
+ * 		| getDeparturePortal() != null
+ * @invar The arrival portal cannot be null
+ * 		| getArrivalPortal() != null
+ * @invar The departure portal-wormhole bidirectional association is consistent
+ * 		| getDeparturePortal().getWormholes().contains(this)
+ * @invar The arrival portal-wormhole bidirectional association is consistent
+ * 		| getArrivalPortal().getWormholes().contains(this)
+ */
 public class Wormhole {
 	
 	/**
